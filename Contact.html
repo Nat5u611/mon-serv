@@ -82,8 +82,9 @@
       box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
 
-    input, textarea {
+    input, textarea, button {
       width: 100%;
+      box-sizing: border-box;
       padding: 10px;
       margin: 8px 0 15px;
       border-radius: 8px;
@@ -93,12 +94,10 @@
 
     button {
       background: #3aa655;
-      border: none;
       color: #fff;
-      padding: 12px 20px;
+      cursor: pointer;
       border-radius: 8px;
       font-size: 1em;
-      cursor: pointer;
     }
     button:hover {
       background: #2f8a47;
@@ -121,6 +120,7 @@
       text-align: left;
       font-size: 1em;
       margin-bottom: 10px;
+      transition: background 0.3s;
     }
     .accordion:hover {
       background-color: #2f8a47;
@@ -131,6 +131,8 @@
       border-radius: 8px;
       padding: 15px;
       margin-bottom: 10px;
+      width: 100%;
+      box-sizing: border-box;
     }
 
     /* Toast notification */
@@ -169,6 +171,13 @@
       background: #111;
       color: #aaa;
     }
+
+    /* Responsive */
+    @media (max-width: 600px) {
+      .banner-text h1 { font-size: 2em; }
+      .banner-text p { font-size: 1em; }
+      .accordion, input, textarea, button { font-size: 0.95em; padding: 10px 15px; }
+    }
   </style>
 </head>
 <body>
@@ -192,9 +201,10 @@
 </header>
 
 <section>
+  <!-- Formulaire accordion -->
   <div class="card">
-    <h2>💬 Nous contacter</h2>
-    <button class="accordion">+ Contacter via le formulaire</button>
+    <h2>💬 Contacter via le formulaire</h2>
+    <button class="accordion">+ Ouvrir le formulaire</button>
     <div class="panel">
       <form id="contact-form" action="https://formspree.io/f/mzddzdwq" method="POST">
         <input type="text" name="prenom" placeholder="Prénom" required>
@@ -204,7 +214,15 @@
         <button type="submit">Envoyer</button>
       </form>
     </div>
-    <p style="margin-top: 10px;">Ou rejoignez-nous sur Discord : <a href="https://discord.gg/u29AHUANP3" target="_blank">https://discord.gg/u29AHUANP3</a></p>
+  </div>
+
+  <!-- Bloc Discord -->
+  <div class="card">
+    <h2>💬 Rejoignez-nous sur Discord</h2>
+    <p>Pour discuter avec nous, poser des questions ou participer aux événements, cliquez sur le bouton ci-dessous :</p>
+    <a href="https://discord.gg/u29AHUANP3" target="_blank">
+      <button>Rejoindre Discord</button>
+    </a>
   </div>
 </section>
 
@@ -215,44 +233,29 @@
 </footer>
 
 <script>
-// Active le lien du menu correspondant à la page actuelle
+// Active le lien du menu
 const navLinks = document.querySelectorAll('.navbar a');
 const currentPage = window.location.pathname.split('/').pop();
-navLinks.forEach(link => {
-  if(link.getAttribute('href') === currentPage) {
-    link.classList.add('active');
-  }
-});
+navLinks.forEach(link => { if(link.getAttribute('href') === currentPage) link.classList.add('active'); });
 
 // Accordion toggle
 const acc = document.getElementsByClassName('accordion')[0];
 const panel = document.getElementsByClassName('panel')[0];
 acc.addEventListener('click', function() {
   panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
-  acc.textContent = panel.style.display === 'block' ? '- Contacter via le formulaire' : '+ Contacter via le formulaire';
+  acc.textContent = panel.style.display === 'block' ? '- Fermer le formulaire' : '+ Ouvrir le formulaire';
 });
 
 // Formulaire avec toast
 const form = document.getElementById('contact-form');
 const toast = document.getElementById('toast');
-
 form.addEventListener('submit', function(e) {
   e.preventDefault();
   const formData = new FormData(form);
-  fetch(form.action, {
-    method: form.method,
-    body: formData,
-    headers: { 'Accept': 'application/json' }
-  }).then(response => {
-    if (response.ok) {
-      form.reset();
-      showToast();
-    } else {
-      alert('Erreur lors de l\'envoi, veuillez réessayer.');
-    }
-  }).catch(error => {
-    alert('Erreur réseau, veuillez réessayer.');
-  });
+  fetch(form.action, { method: form.method, body: formData, headers: { 'Accept': 'application/json' } })
+  .then(response => {
+    if (response.ok) { form.reset(); showToast(); } else { alert('Erreur lors de l\'envoi, veuillez réessayer.'); }
+  }).catch(error => { alert('Erreur réseau, veuillez réessayer.'); });
 });
 
 function showToast() {
@@ -263,17 +266,3 @@ function showToast() {
 
 </body>
 </html>
-```
-
----
-
-✅ **Fonctionnalités ajoutées :**  
-- Formulaire caché derrière un bouton `+ Contacter via le formulaire`  
-- Clique sur le bouton → formulaire apparaît et `+` devient `-`  
-- Clique à nouveau → formulaire se referme  
-- Toast éphémère après envoi  
-- Menu et bannière identiques aux autres pages  
-
-Si tu veux, je peux maintenant **faire la même chose pour le menu mobile / responsive** pour que le bouton fonctionne bien sur téléphone.  
-
-Veux‑tu que je fasse ça ?
