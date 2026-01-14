@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Nous contacter - Aexis</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1e1e1e, #2e2e2e);
+      color: #fff;
+    }
+
+    /* Navbar */
+    .navbar {
+      background: #3aa655;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+    }
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+
+    .banner {
+      position: relative;
+      text-align: center;
+      color: white;
+      margin-bottom: 30px;
+    }
+    .banner-text {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-shadow: 2px 2px 8px #000;
+    }
+    .banner-text h1 {
+      margin: 0;
+      font-size: 3em;
+    }
+    .banner-text p {
+      font-size: 1.2em;
+    }
+    .image {
+      width: 100%;
+      max-height: 300px;
+      object-fit: cover;
+      border-radius: 12px;
+    }
+
+    section {
+      max-width: 900px;
+      margin: 20px auto 40px auto;
+      padding: 0 20px;
+    }
+
+    .card {
+      background: #262626;
+      border-radius: 12px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0 15px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1em;
+    }
+
+    button {
+      background: #3aa655;
+      border: none;
+      color: #fff;
+      padding: 12px 20px;
+      border-radius: 8px;
+      font-size: 1em;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #2f8a47;
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #111;
+      color: #aaa;
+    }
+
+    a {
+      color: #3aa655;
+      text-decoration: none;
+    }
+
+    /* Toast notification */
+    #toast {
+      visibility: hidden;
+      min-width: 250px;
+      background-color: #3aa655;
+      color: white;
+      text-align: center;
+      border-radius: 8px;
+      padding: 16px;
+      position: fixed;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 200;
+      font-size: 1em;
+      box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+    }
+
+    #toast.show {
+      visibility: visible;
+      animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    }
+
+    @keyframes fadein {
+      from {bottom: 0; opacity: 0;}
+      to {bottom: 30px; opacity: 1;}
+    }
+
+    @keyframes fadeout {
+      from {bottom: 30px; opacity: 1;}
+      to {bottom: 0; opacity: 0;}
+    }
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <ul>
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="qui-sommes-nous.html">Qui sommes-nous ?</a></li>
+    <li><a href="vote.html">Vote</a></li>
+    <li><a href="wiki.html">Wiki</a></li>
+    <li><a href="contact.html">Nous contacter</a></li>
+  </ul>
+</nav>
+
+<header class="banner">
+  <img src="https://raw.githubusercontent.com/Nat5u611/mon-serv/main/banner.png" alt="Bannière Aexis" class="image">
+  <div class="banner-text">
+    <h1>🌍 Aexis</h1>
+    <p>Nous contacter</p>
+  </div>
+</header>
+
+<section>
+  <div class="card">
+    <h2>💬 Formulaire de contact</h2>
+    <form id="contact-form" action="https://formspree.io/f/mnqvllza" method="POST">
+      <input type="text" name="prenom" placeholder="Prénom" required>
+      <input type="text" name="nom" placeholder="Nom" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="message" rows="6" placeholder="Votre message..." required></textarea>
+      <button type="submit">Envoyer</button>
+    </form>
+    <p style="margin-top: 10px;">Ou rejoignez-nous sur Discord : <a href="https://discord.gg/u29AHUANP3" target="_blank">https://discord.gg/u29AHUANP3</a></p>
+  </div>
+</section>
+
+<div id="toast">✅ Message envoyé avec succès !</div>
+
+<footer>
+  <p>Aexis</p>
+</footer>
+
+<script>
+const form = document.getElementById('contact-form');
+const toast = document.getElementById('toast');
+
+form.addEventListener('submit', function(e) {
+  e.preventDefault();
+  const formData = new FormData(form);
+  fetch(form.action, {
+    method: form.method,
+    body: formData,
+    headers: { 'Accept': 'application/json' }
+  }).then(response => {
+    if (response.ok) {
+      form.reset();
+      showToast();
+    } else {
+      alert('Erreur lors de l\'envoi, veuillez réessayer.');
+    }
+  }).catch(error => {
+    alert('Erreur réseau, veuillez réessayer.');
+  });
+});
+
+function showToast() {
+  toast.className = 'show';
+  setTimeout(() => {
+    toast.className = toast.className.replace('show', '');
+  }, 3000);
+}
+</script>
+
+</body>
+</html>
