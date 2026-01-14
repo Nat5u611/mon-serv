@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Aexis</title>
   <style>
     body {
@@ -35,11 +35,17 @@
     .navbar a:hover {
       text-decoration: underline;
     }
+    .navbar a.active {
+      text-decoration: underline;
+      color: #fff;
+      font-weight: bold;
+    }
 
     .banner {
       position: relative;
       text-align: center;
       color: white;
+      margin-bottom: 30px;
     }
     .banner-text {
       position: absolute;
@@ -64,9 +70,10 @@
 
     section {
       max-width: 900px;
-      margin: 40px auto;
+      margin: 20px auto 40px auto;
       padding: 0 20px;
     }
+
     .card {
       background: #262626;
       border-radius: 12px;
@@ -74,11 +81,13 @@
       margin-bottom: 20px;
       box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
+
     .ip {
       font-size: 1.5em;
       color: #3aa655;
       font-weight: bold;
     }
+
     button {
       background: #3aa655;
       border: none;
@@ -97,19 +106,6 @@
       padding: 20px;
       background: #111;
       color: #aaa;
-    }
-
-    a {
-      color: #3aa655;
-      text-decoration: none;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 8px;
-      margin: 5px 0 10px;
-      border-radius: 5px;
-      border: none;
     }
   </style>
 </head>
@@ -163,11 +159,21 @@
 </footer>
 
 <script>
-  function copyIP() {
-    const ip = document.getElementById("server-ip").innerText;
-    navigator.clipboard.writeText(ip);
-    alert("IP copiée : " + ip);
+// Active le lien du menu correspondant à la page actuelle
+const navLinks = document.querySelectorAll('.navbar a');
+const currentPage = window.location.pathname.split('/').pop();
+navLinks.forEach(link => {
+  if(link.getAttribute('href') === currentPage) {
+    link.classList.add('active');
   }
+});
+
+// Copier l'IP
+function copyIP() {
+  const ip = document.getElementById("server-ip").innerText;
+  navigator.clipboard.writeText(ip);
+  alert("IP copiée : " + ip);
+}
 </script>
 
 </body>
