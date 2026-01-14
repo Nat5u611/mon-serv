@@ -11,6 +11,31 @@
       background: linear-gradient(135deg, #1e1e1e, #2e2e2e);
       color: #fff;
     }
+
+    /* Navbar */
+    .navbar {
+      background: #3aa655;
+      padding: 10px 20px;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
+    .navbar ul {
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      gap: 20px;
+    }
+    .navbar a {
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .navbar a:hover {
+      text-decoration: underline;
+    }
+
     .banner {
       position: relative;
       text-align: center;
@@ -36,6 +61,7 @@
       object-fit: cover;
       border-radius: 12px;
     }
+
     section {
       max-width: 900px;
       margin: 40px auto;
@@ -65,19 +91,39 @@
     button:hover {
       background: #2f8a47;
     }
+
     footer {
       text-align: center;
       padding: 20px;
       background: #111;
       color: #aaa;
     }
+
     a {
       color: #3aa655;
       text-decoration: none;
     }
+
+    input, textarea {
+      width: 100%;
+      padding: 8px;
+      margin: 5px 0 10px;
+      border-radius: 5px;
+      border: none;
+    }
   </style>
 </head>
 <body>
+
+<nav class="navbar">
+  <ul>
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="qui-sommes-nous.html">Qui sommes-nous ?</a></li>
+    <li><a href="vote.html">Vote</a></li>
+    <li><a href="wiki.html">Wiki</a></li>
+    <li><a href="contact.html">Nous contacter</a></li>
+  </ul>
+</nav>
 
 <header class="banner">
   <img src="https://raw.githubusercontent.com/Nat5u611/mon-serv/main/banner.png" alt="Bannière Aexis" class="image">
