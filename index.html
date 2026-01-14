@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Aexis</title>
+  <title>Nous contacter - Aexis</title>
   <style>
     body {
       margin: 0;
@@ -40,6 +40,7 @@
       position: relative;
       text-align: center;
       color: white;
+      margin-bottom: 30px;
     }
     .banner-text {
       position: absolute;
@@ -64,9 +65,10 @@
 
     section {
       max-width: 900px;
-      margin: 40px auto;
+      margin: 20px auto 40px auto;
       padding: 0 20px;
     }
+
     .card {
       background: #262626;
       border-radius: 12px;
@@ -74,16 +76,21 @@
       margin-bottom: 20px;
       box-shadow: 0 10px 20px rgba(0,0,0,0.3);
     }
-    .ip {
-      font-size: 1.5em;
-      color: #3aa655;
-      font-weight: bold;
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0 15px;
+      border-radius: 8px;
+      border: none;
+      font-size: 1em;
     }
+
     button {
       background: #3aa655;
       border: none;
       color: #fff;
-      padding: 10px 18px;
+      padding: 12px 20px;
       border-radius: 8px;
       font-size: 1em;
       cursor: pointer;
@@ -97,19 +104,6 @@
       padding: 20px;
       background: #111;
       color: #aaa;
-    }
-
-    a {
-      color: #3aa655;
-      text-decoration: none;
-    }
-
-    input, textarea {
-      width: 100%;
-      padding: 8px;
-      margin: 5px 0 10px;
-      border-radius: 5px;
-      border: none;
     }
   </style>
 </head>
@@ -129,46 +123,27 @@
   <img src="https://raw.githubusercontent.com/Nat5u611/mon-serv/main/banner.png" alt="Bannière Aexis" class="image">
   <div class="banner-text">
     <h1>🌍 Aexis</h1>
-    <p>Survie • SMP • Communauté chill</p>
+    <p>Nous contacter</p>
   </div>
 </header>
 
 <section>
   <div class="card">
-    <h2>📡 Informations</h2>
-    <p><strong>IP :</strong> <span class="ip" id="server-ip">play.aexis.fr</span></p>
-    <button onclick="copyIP()">📋 Copier l'IP</button>
-    <p><strong>Version :</strong> 1.21.x</p>
-    <p><strong>Mode :</strong> Survie SMP</p>
-  </div>
-
-  <div class="card">
-    <h2>⚔️ Fonctionnalités</h2>
-    <ul>
-      <li>Survie vanilla améliorée</li>
-      <li>Events réguliers</li>
-      <li>Staff actif</li>
-      <li>Aucune pay-to-win</li>
-    </ul>
-  </div>
-
-  <div class="card">
-    <h2>💬 Rejoins-nous</h2>
-    <p>Discord : <a href="https://discord.gg/u29AHUANP3" target="_blank">https://discord.gg/u29AHUANP3</a></p>
+    <h2>💬 Formulaire de contact</h2>
+    <form action="https://formspree.io/f/mnqvllza" method="POST">
+      <input type="text" name="prenom" placeholder="Prénom" required>
+      <input type="text" name="nom" placeholder="Nom" required>
+      <input type="email" name="email" placeholder="Email" required>
+      <textarea name="message" rows="6" placeholder="Votre message..." required></textarea>
+      <button type="submit">Envoyer</button>
+    </form>
+    <p style="margin-top: 10px;">Ou rejoignez-nous sur Discord : <a href="https://discord.gg/u29AHUANP3" target="_blank">https://discord.gg/u29AHUANP3</a></p>
   </div>
 </section>
 
 <footer>
   <p>Aexis</p>
 </footer>
-
-<script>
-  function copyIP() {
-    const ip = document.getElementById("server-ip").innerText;
-    navigator.clipboard.writeText(ip);
-    alert("IP copiée : " + ip);
-  }
-</script>
 
 </body>
 </html>
