@@ -1,1 +1,170 @@
-t
+<!DOCTYPE html>
+
+<html lang="fr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Règlement - Aexis</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background: linear-gradient(135deg, #1e1e1e, #2e2e2e);
+      color: #fff;
+    }
+
+```
+/* Navbar */
+.navbar {
+  background: #3aa655;
+  padding: 10px 20px;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.navbar ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  gap: 20px;
+}
+.navbar a {
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+}
+.navbar a:hover {
+  text-decoration: underline;
+}
+.navbar a.active {
+  text-decoration: underline;
+  font-weight: bold;
+}
+
+.banner {
+  position: relative;
+  text-align: center;
+  color: white;
+  margin-bottom: 30px;
+}
+.banner-text {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-shadow: 2px 2px 8px #000;
+}
+.banner-text h1 {
+  margin: 0;
+  font-size: 3em;
+}
+.banner-text p {
+  font-size: 1.2em;
+}
+.image {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+section {
+  max-width: 900px;
+  margin: 20px auto 40px auto;
+  padding: 0 20px;
+}
+
+.card {
+  background: #262626;
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+}
+
+h2 {
+  margin-top: 0;
+}
+
+footer {
+  text-align: center;
+  padding: 20px;
+  background: #111;
+  color: #aaa;
+}
+
+@media (max-width: 600px) {
+  .banner-text h1 { font-size: 2em; }
+  .banner-text p { font-size: 1em; }
+}
+```
+
+  </style>
+</head>
+<body>
+
+<nav class="navbar">
+  <ul>
+    <li><a href="index.html">Accueil</a></li>
+    <li><a href="About-us.html">Qui sommes-nous ?</a></li>
+    <li><a href="vote.html">Vote</a></li>
+    <li><a href="wiki.html">Wiki</a></li>
+    <li><a href="Contact.html">Nous contacter</a></li>
+    <li><a href="Reglement.html">Règlement</a></li>
+  </ul>
+</nav>
+
+<header class="banner">
+  <img src="https://raw.githubusercontent.com/Nat5u611/mon-serv/main/banner.png" alt="Bannière Aexis" class="image">
+  <div class="banner-text">
+    <h1>📜 Règlement</h1>
+    <p>Aexis</p>
+  </div>
+</header>
+
+<section>
+  <div class="card">
+    <h2>Règles générales</h2>
+    <ul>
+      <li>Respectez tous les joueurs et le staff.</li>
+      <li>Pas de spam, publicité ou hacks.</li>
+      <li>Utilisez un langage approprié.</li>
+      <li>Ne partagez pas de données personnelles.</li>
+      <li>Suivez les instructions des modérateurs.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Règles de jeu</h2>
+    <ul>
+      <li>Pas de griefing sur les constructions des autres.</li>
+      <li>Respectez les zones protégées et les événements.</li>
+      <li>Exploitez le jeu de manière équitable.</li>
+      <li>Tout bug ou exploit doit être reporté.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h2>Sanctions</h2>
+    <ul>
+      <li>Tout manquement aux règles peut entraîner un kick ou un ban temporaire.</li>
+      <li>Les récidives peuvent entraîner un ban permanent.</li>
+      <li>Les décisions du staff sont finales.</li>
+    </ul>
+  </div>
+</section>
+
+<footer>
+  <p>Aexis</p>
+</footer>
+
+<script>
+// Active le lien du menu
+const navLinks = document.querySelectorAll('.navbar a');
+const currentPage = window.location.pathname.split('/').pop();
+navLinks.forEach(link => { if(link.getAttribute('href') === currentPage) link.classList.add('active'); });
+</script>
+
+</body>
+</html>
