@@ -50,13 +50,25 @@ a {
 color: #3aa655;
 text-decoration: none;
 }
+button {
+background: #3aa655;
+border: none;
+color: #fff;
+padding: 10px 18px;
+border-radius: 8px;
+font-size: 1em;
+cursor: pointer;
+}
+button:hover {
+background: #2f8a47;
+}
 </style>
 </head>
 <body>
 
 
 <header>
-<h1>🌍 Mon Serveur Minecraft</h1>
+<h1>🌍 Serveur Minecraft Aexis</h1>
 <p>Survie • SMP • Communauté chill</p>
 </header>
 
@@ -64,7 +76,9 @@ text-decoration: none;
 <section>
 <div class="card">
 <h2>📡 Informations</h2>
-<p><strong>IP :</strong> <span class="ip">play.monserveur.fr</span></p>
+<p><strong>IP :</strong> <span class="ip" id="server-ip">play.aexis.fr</span>
+<br><br>
+<button onclick="copyIP()">📋 Copier l'IP</button></p>
 <p><strong>Version :</strong> 1.21.x</p>
 <p><strong>Mode :</strong> Survie SMP</p>
 </div>
@@ -93,5 +107,12 @@ text-decoration: none;
 </footer>
 
 
+<script>
+function copyIP() {
+const ip = document.getElementById("server-ip").innerText;
+navigator.clipboard.writeText(ip);
+alert("IP copiée : " + ip);
+}
+</script>
 </body>
 </html>
