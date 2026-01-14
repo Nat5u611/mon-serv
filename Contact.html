@@ -104,16 +104,33 @@
       background: #2f8a47;
     }
 
-    footer {
-      text-align: center;
-      padding: 20px;
-      background: #111;
-      color: #aaa;
-    }
-
     a {
       color: #3aa655;
       text-decoration: none;
+    }
+
+    /* Accordion */
+    .accordion {
+      background-color: #3aa655;
+      color: white;
+      cursor: pointer;
+      padding: 12px 20px;
+      width: 100%;
+      border: none;
+      border-radius: 8px;
+      text-align: left;
+      font-size: 1em;
+      margin-bottom: 10px;
+    }
+    .accordion:hover {
+      background-color: #2f8a47;
+    }
+    .panel {
+      display: none;
+      background-color: #262626;
+      border-radius: 8px;
+      padding: 15px;
+      margin-bottom: 10px;
     }
 
     /* Toast notification */
@@ -133,20 +150,24 @@
       font-size: 1em;
       box-shadow: 0 4px 8px rgba(0,0,0,0.3);
     }
-
     #toast.show {
       visibility: visible;
       animation: fadein 0.5s, fadeout 0.5s 2.5s;
     }
-
     @keyframes fadein {
       from {bottom: 0; opacity: 0;}
       to {bottom: 30px; opacity: 1;}
     }
-
     @keyframes fadeout {
       from {bottom: 30px; opacity: 1;}
       to {bottom: 0; opacity: 0;}
+    }
+
+    footer {
+      text-align: center;
+      padding: 20px;
+      background: #111;
+      color: #aaa;
     }
   </style>
 </head>
@@ -155,7 +176,7 @@
 <nav class="navbar">
   <ul>
     <li><a href="index.html">Accueil</a></li>
-    <li><a href="qui-sommes-nous.html">Qui sommes-nous ?</a></li>
+    <li><a href="About-us.html">Qui sommes-nous ?</a></li>
     <li><a href="vote.html">Vote</a></li>
     <li><a href="wiki.html">Wiki</a></li>
     <li><a href="Contact.html">Nous contacter</a></li>
@@ -172,14 +193,17 @@
 
 <section>
   <div class="card">
-    <h2>💬 Formulaire de contact</h2>
-    <form id="contact-form" action="https://formspree.io/f/mzddzdwq" method="POST">
-      <input type="text" name="prenom" placeholder="Prénom" required>
-      <input type="text" name="nom" placeholder="Nom" required>
-      <input type="email" name="email" placeholder="Email" required>
-      <textarea name="message" rows="6" placeholder="Votre message..." required></textarea>
-      <button type="submit">Envoyer</button>
-    </form>
+    <h2>💬 Nous contacter</h2>
+    <button class="accordion">+ Contacter via le formulaire</button>
+    <div class="panel">
+      <form id="contact-form" action="https://formspree.io/f/mzddzdwq" method="POST">
+        <input type="text" name="prenom" placeholder="Prénom" required>
+        <input type="text" name="nom" placeholder="Nom" required>
+        <input type="email" name="email" placeholder="Email" required>
+        <textarea name="message" rows="6" placeholder="Votre message..." required></textarea>
+        <button type="submit">Envoyer</button>
+      </form>
+    </div>
     <p style="margin-top: 10px;">Ou rejoignez-nous sur Discord : <a href="https://discord.gg/u29AHUANP3" target="_blank">https://discord.gg/u29AHUANP3</a></p>
   </div>
 </section>
@@ -198,6 +222,14 @@ navLinks.forEach(link => {
   if(link.getAttribute('href') === currentPage) {
     link.classList.add('active');
   }
+});
+
+// Accordion toggle
+const acc = document.getElementsByClassName('accordion')[0];
+const panel = document.getElementsByClassName('panel')[0];
+acc.addEventListener('click', function() {
+  panel.style.display = panel.style.display === 'block' ? 'none' : 'block';
+  acc.textContent = panel.style.display === 'block' ? '- Contacter via le formulaire' : '+ Contacter via le formulaire';
 });
 
 // Formulaire avec toast
@@ -225,11 +257,23 @@ form.addEventListener('submit', function(e) {
 
 function showToast() {
   toast.className = 'show';
-  setTimeout(() => {
-    toast.className = toast.className.replace('show', '');
-  }, 3000);
+  setTimeout(() => { toast.className = toast.className.replace('show',''); }, 3000);
 }
 </script>
 
 </body>
 </html>
+```
+
+---
+
+✅ **Fonctionnalités ajoutées :**  
+- Formulaire caché derrière un bouton `+ Contacter via le formulaire`  
+- Clique sur le bouton → formulaire apparaît et `+` devient `-`  
+- Clique à nouveau → formulaire se referme  
+- Toast éphémère après envoi  
+- Menu et bannière identiques aux autres pages  
+
+Si tu veux, je peux maintenant **faire la même chose pour le menu mobile / responsive** pour que le bouton fonctionne bien sur téléphone.  
+
+Veux‑tu que je fasse ça ?
